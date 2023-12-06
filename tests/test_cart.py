@@ -11,15 +11,14 @@ def cart_fixture(store, customer):
     return create_cart(store.id, customer.id)
 
 
-
 def test_create_cart(cart):
     assert cart is not None
     assert cart.id is not None
     assert cart.is_empty
 
 
-
 def test_add_product_to_cart(cart, product):
+    # TODO parametrize the quantity
     add_product_to_cart(cart.id, product.id, 1)
     cart = read_cart(cart.id)
     assert cart.products[0].id == product.id
@@ -28,6 +27,7 @@ def test_add_product_to_cart(cart, product):
 
 
 def test_increment_quantity(cart, product):
+    # TODO use a fixture to avoid calling `add_product_to_cart` here
     add_product_to_cart(cart.id, product.id, 1)
     increment_quantity(cart.id, product.id)
     cart = read_cart(cart.id)
