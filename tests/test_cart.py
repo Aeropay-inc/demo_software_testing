@@ -22,6 +22,10 @@ def product_fixture(store):
     return create_product(store.id)
 
 
+@pytest.fixture(name="cart")
+def cart_fixture(store, customer):
+    return create_cart(store.id, customer.id)
+
 def test_create_store(store):
     assert store is not None
     assert store.id is not None
@@ -48,6 +52,7 @@ def test_add_product_to_cart(cart, product):
     cart = read_cart(cart.id)
     assert cart.products[0].id == product.id
     assert cart.products[0].quantity == 1
+    assert not cart.is_empty
 
 
 def test_increment_quantity(cart, product):
@@ -64,4 +69,4 @@ def test_decrement_quantity(cart, product):
     assert cart.products[0].quantity == 1
     decrement_quantity(cart.id, product.id)
     cart = read_cart(cart.id)
-    assert cart.empty
+    assert cart.is_empty
