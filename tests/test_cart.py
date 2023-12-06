@@ -9,6 +9,7 @@ import pytest
 
 @pytest.fixture(name="store")
 def store_fixture():
+    #XXX Why is this here?! It's not testing cart, it's testing STORE! """
     return create_store()
 
 
