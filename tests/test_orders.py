@@ -1,3 +1,0 @@
-
-def create_product(store_id: int):
-    ...
