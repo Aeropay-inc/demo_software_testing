@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "demo-software-testing"
+version = "0.1.0"
+description = ""
+authors = ["KC Crouch <kody.crouch@aeropay.com>"]
+readme = "README.md"
+packages = [{include = "demo_software_testing"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+pytest = "^7.4.3"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
