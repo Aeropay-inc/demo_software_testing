@@ -3,18 +3,7 @@ from cart_api import create_cart, add_product_to_cart, read_cart, increment_quan
 
 import pytest
 
-from customer_api import create_customer
-from product_api import create_product
 
-
-@pytest.fixture(name="customer")
-def customer_fixture(store):
-    return create_customer(store.id)
-
-
-@pytest.fixture(name="product")
-def product_fixture(store):
-    return create_product(store.id)
 
 
 @pytest.fixture(name="cart")
@@ -22,20 +11,12 @@ def cart_fixture(store, customer):
     return create_cart(store.id, customer.id)
 
 
-def test_create_customer(customer):
-    assert customer is not None
-    assert customer.id is not None
-
 
 def test_create_cart(cart):
     assert cart is not None
     assert cart.id is not None
     assert cart.is_empty
 
-
-def test_create_product(product):
-    assert product is not None
-    assert product.id is not None
 
 
 def test_add_product_to_cart(cart, product):
