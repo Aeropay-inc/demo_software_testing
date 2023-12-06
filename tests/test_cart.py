@@ -1,16 +1,10 @@
 
 from cart_api import create_cart, add_product_to_cart, read_cart, increment_quantity, decrement_quantity
-from customer_api import create_customer
-from product_api import create_product
-from store_api import create_store
-
 
 import pytest
 
-@pytest.fixture(name="store")
-def store_fixture():
-    #XXX Why is this here?! It's not testing cart, it's testing STORE! """
-    return create_store()
+from customer_api import create_customer
+from product_api import create_product
 
 
 @pytest.fixture(name="customer")
@@ -26,10 +20,6 @@ def product_fixture(store):
 @pytest.fixture(name="cart")
 def cart_fixture(store, customer):
     return create_cart(store.id, customer.id)
-
-def test_create_store(store):
-    assert store is not None
-    assert store.id is not None
 
 
 def test_create_customer(customer):
